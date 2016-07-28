@@ -1,19 +1,19 @@
 """
 ################################################################################
 # Copyright (c) 2013, Ilgar Mashayev
-# 
+#
 # Website: http://lazylabs.org
 ################################################################################
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Lesser General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU Lesser General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
@@ -25,6 +25,7 @@ import gobject
 import gtk
 import os
 import subprocess
+# import uuid
 
 import terminatorlib.plugin as plugin
 import terminatorlib.util as util
@@ -195,7 +196,7 @@ class ClonableTerminal(Terminal):
             pass
 
         envv = []
-        envv.append('TERMINATOR_UUID=%s' % self.uuid.urn)
+        # envv.append('TERMINATOR_UUID=%s' % uuid.uuid1().urn)
         if self.terminator.dbus_name:
             envv.append('TERMINATOR_DBUS_NAME=%s' % self.terminator.dbus_name)
         if self.terminator.dbus_path:
@@ -203,9 +204,9 @@ class ClonableTerminal(Terminal):
 
         dbg('Forking shell: "%s" with args: %s' % (shell, args))
         self.pid = self.vte.fork_command(command=shell, argv=args, envv=envv,
-                                         loglastlog=login, 
+                                         loglastlog=login,
                                          logwtmp=update_records,
-                                         logutmp=update_records, 
+                                         logutmp=update_records,
                                          directory=self.cwd)
         self.command = shell
 
