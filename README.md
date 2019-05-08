@@ -1,6 +1,8 @@
 Terminator plugins
 ==================
 
+*I am not using Linux desktop since few years already, and I am not supporting this repository since then as well. I am sorry for inconvenience.*
+
 Clone session
 -------------
 
